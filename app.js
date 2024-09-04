@@ -3,14 +3,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 // Définition des paramètres du serveur
-const hostname = "172.20.10.3";
+const hostname = "172.20.10.2";
 const port = 3000;
 const app = express();
 
 // Importation du routeur
 const produitRouteur = require("./produits/routes/produitRouter");
 const clientRouteur = require("./clients/routes/clientRouter");
-const commandeRouteur = require("./commande/routes/commandeRouter");
+const commandeRouteur = require("./commande/routes/commandeRouter")
 
 // MiddleWare pour les fichiers statiques
 app.use(express.static("public"));
@@ -33,6 +33,7 @@ app.use(function (req, res, next) {
 // App utilise le routeur produitRouteur
 app.use(produitRouteur);
 app.use(clientRouteur);
+app.use(commandeRouteur);
 
 // Démarrage du serveur
 app.listen(port, hostname, function () {

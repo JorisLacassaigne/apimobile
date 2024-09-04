@@ -8,7 +8,7 @@ const ClientModel = {
     return result;
   },
 
-  // Récupération d'un produit par référence
+  // Récupération d'un client par référence
   getClientById: async (codec) => {
     const sql = "SELECT * FROM client WHERE codec = ?";
     return await db.executeQuery(sql, [codec]);
