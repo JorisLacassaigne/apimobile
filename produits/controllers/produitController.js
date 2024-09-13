@@ -32,6 +32,31 @@ const ProduitController = {
         }
     },
 
+    // Avoir les nouveaux produits
+    getNewProduit: async (req, res) => {
+
+        try {
+            const produits = await ProduitModel.getNewProduit();
+            res.json(produits);
+        } catch (error) {
+            res
+                .status(500)
+                .send("Erreur lors de la récupération des produits : " + error.message);
+        }
+    },
+
+    getPopProduit: async (req, res) => {
+
+        try {
+            const produits = await ProduitModel.getPopProduit();
+            res.json(produits);
+        } catch (error) {
+            res
+                .status(500)
+                .send("Erreur lors de la récupération des produits : " + error.message);
+        }
+    },
+
 };
 
 
