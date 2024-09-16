@@ -1,29 +1,42 @@
 const db = require("../../database");
 
-
 const CommandeModel = {
-   getCommandeById: async (numero) => {
-       const sql = "SELECT * FROM commande WHERE numero = ?";
-       const result = await db.executeQuery(sql, [numero]);
-       return result;
-   },
+    // Créer une nouvelle commande
+    createCommande: async (codev, codec, dateCommande, totalHT) => {
+        const sql = `INSERT INTO commande (codev, codec, dateLivraison, dateCommande, totalHT)
+                     VALUES (?, ?, NULL, ?, ?)`;
+        const result = await db.executeQuery(sql, [codev, codec, dateCommande, totalHT]);
+        return result.insertId;  // Retourne l'ID de la commande créée
+    },
 
+    // Récupérer une commande par son ID
+    getCommandeById: async (numero) => {
+        const sql = "SELECT * FROM commande WHERE numero = ?";
+        const result = await db.executeQuery(sql, [numero]);
+        return result;
+    },
+
+    // Récupérer les commandes d'un client
     getCommandeByClient: async (codec) => {
         const sql = "SELECT * FROM commande WHERE codec = ?";
         const result = await db.executeQuery(sql, [codec]);
         return result;
     },
 
+    // Récupérer les commandes en fonction de l'email client
     getCommandeByEmail: async (email) => {
-        const sql = "SELECT c.*\n FROM commande c\n JOIN client cl ON c.codec = cl.codec\n WHERE cl.email = ? ";
+        const sql = `SELECT * FROM commande 
+                     JOIN client ON commande.codec = client.codec 
+                     WHERE client.email = ?`;
         const result = await db.executeQuery(sql, [email]);
         return result;
     },
 
-   getAllCommande: async () => {
-       const sql = "SELECT * FROM commande";
-       return await db.executeQuery(sql);
-   },
+    // Récupérer toutes les commandes
+    getAllCommande: async () => {
+        const sql = "SELECT * FROM commande";
+        return await db.executeQuery(sql);
+    },
 };
 
 module.exports = CommandeModel;
