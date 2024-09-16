@@ -25,9 +25,7 @@ const CommandeModel = {
 
     // Récupérer les commandes en fonction de l'email client
     getCommandeByEmail: async (email) => {
-        const sql = `SELECT * FROM commande 
-                     JOIN client ON commande.codec = client.codec 
-                     WHERE client.email = ?`;
+        const sql = "SELECT c.* FROM commande c JOIN client cl ON c.codec = cl.codec WHERE cl.email = ?";
         const result = await db.executeQuery(sql, [email]);
         return result;
     },
