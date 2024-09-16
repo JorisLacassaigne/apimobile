@@ -9,13 +9,13 @@ const CommandeModel = {
    },
 
     getCommandeByClient: async (codec) => {
-      //  const sql = "SELECT * FROM commande WHERE codec = ?";
-        //const result = await db.executeQuery(sql, [codec]);
-        //return result;
+        const sql = "SELECT * FROM commande WHERE codec = ?";
+        const result = await db.executeQuery(sql, [codec]);
+        return result;
     },
 
     getCommandeByEmail: async (email) => {
-        const sql = "SELECT * FROM commande JOIN client ON commande.codec = client.codec WHERE client.email = ?";
+        const sql = "SELECT c.*\n FROM commande c\n JOIN client cl ON c.codec = cl.codec\n WHERE cl.email = ? ";
         const result = await db.executeQuery(sql, [email]);
         return result;
     },

@@ -10,9 +10,6 @@ router.get("/commandes", commandeController.getAllCommande);
 router.get("/commande/:numero", commandeController.getCommandeById);
 
 // Get toutes les commandes d'un client
-router.get("/commandess/:codec", commandeController.getCommandeByClient);
-
-// Get par email
 router.get("/commandes/:email", commandeController.getCommandeByEmail);
 
 module.exports = router;

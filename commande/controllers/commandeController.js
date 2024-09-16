@@ -24,6 +24,7 @@ const CommandeController = {
         }
     },
 
+
     getCommandeByEmail: async (req,res) => {
         try {
             const email = req.params.email;
