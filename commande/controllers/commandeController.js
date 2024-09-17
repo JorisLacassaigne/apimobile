@@ -5,7 +5,7 @@ const CommandeController = {
     // Créer une nouvelle commande avec ses lignes
     createCommande: async (req, res) => {
         try {
-            const { codev, codec, dateCommande, totalHT, lignesCommande } = req.body;
+            const {codev, codec, dateCommande, totalHT, lignesCommande } = req.body;
 
             // Créer une nouvelle commande
             const numeroCommande = await CommandeModel.createCommande(codev, codec, dateCommande, totalHT);

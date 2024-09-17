@@ -2,10 +2,10 @@ const db = require("../../database");
 
 const CommandeModel = {
     // Créer une nouvelle commande
-    createCommande: async (codev, codec, dateCommande, totalHT) => {
-        const sql = `INSERT INTO commande (codev, codec, dateLivraison, dateCommande, totalHT, totalTVA, etat)
-                     VALUES (?, ?, NULL, ?, ?, ?, ?)`;
-        const result = await db.executeQuery(sql, [codev, codec, dateCommande, totalHT, totalTVA, etat]);
+    createCommande: async (codev, email, dateCommande, totalHT) => {
+        const sql = `INSERT INTO commande (codev, codec, dateLivraison, dateCommande, totalHT)
+                     VALUES (?, ?, NULL, ?, ?)`;
+        const result = await db.executeQuery(sql, [codev, email, dateCommande, totalHT]);
         return result.insertId;  // Retourne l'ID de la commande créée
     },
 
