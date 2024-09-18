@@ -5,15 +5,15 @@ const CommandeController = {
     // Créer une nouvelle commande avec ses lignes
     createCommande: async (req, res) => {
         try {
-            const {codev, codec, dateCommande, totalHT, lignesCommande } = req.body;
+            const {codev, codec, dateLivraison, dateCommande, totalHT, lignesCommande } = req.body;
 
             // Créer une nouvelle commande
-            const numeroCommande = await CommandeModel.createCommande(codev, codec, dateCommande, totalHT);
+            const numero = await CommandeModel.createCommande(codev, codec, dateLivraison, dateCommande, totalHT);
 
             // Ajouter les lignes de commande
-            await LigneCommandeModel.addLignesCommande(numeroCommande, lignesCommande);
+            await LigneCommandeModel.addLignesCommande(numero, lignesCommande);
 
-            res.status(201).json({ message: 'Commande créée avec succès', numeroCommande });
+            res.status(201).json({ message: 'Commande créée avec succès', numero });
         } catch (error) {
             res.status(500).send("Erreur lors de la création de la commande : " + error.message);
         }

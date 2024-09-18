@@ -2,12 +2,12 @@ const db = require("../../database");
 
 const LigneCommandeModel = {
     // Ajouter des lignes de commande
-    addLignesCommande: async (numeroCommande, lignesCommande) => {
+    addLignesCommande: async (numero, lignesCommande) => {
         const sql = `INSERT INTO ligne_commande (numero, numero_ligne, reference, quantite_demandee)
                      VALUES ?`;
 
         const lignesData = lignesCommande.map((ligne, index) => [
-            numeroCommande,
+            numero,
             index + 1,  // numéro de ligne
             ligne.reference,
             ligne.quantite_demandee
@@ -18,9 +18,9 @@ const LigneCommandeModel = {
     },
 
     // Récupérer les lignes d'une commande
-    getLignesByCommandeId: async (numeroCommande) => {
+    getLignesByCommandeId: async (numero) => {
         const sql = "SELECT * FROM ligne_commande WHERE numero = ?";
-        const result = await db.executeQuery(sql, [numeroCommande]);
+        const result = await db.executeQuery(sql, [numero]);
         return result;
     }
 };
