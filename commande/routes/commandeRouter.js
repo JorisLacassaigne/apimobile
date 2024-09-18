@@ -1,18 +1,18 @@
 const express = require("express");
 const commandeController = require("../controllers/commandeController");
 const auth = require("../../middleware/auth");
+const processOrder = require("../processOrder");
 const router = express.Router();
 
 // Route pour créer une commande
 router.post('/commande', auth, async (req, res) => {
-    const clientId = req.auth.codec; // L'ID du client extrait du JWT
     const { dateCommande, totalHT, lignesCommande } = req.body;
 
     // Traitement de la commande
     try {
         // Exemple de traitement de la commande. Remplacez par votre logique réelle.
         // Imaginons que vous ayez une fonction `processOrder` qui traite la commande.
-        const result = await processOrder(clientId, dateCommande, totalHT, lignesCommande);
+        const result = await processOrder(codev, codec, dateCommande, totalHT, lignesCommande);
 
         res.status(200).json({ message: 'Commande traitée avec succès', result });
     } catch (error) {
