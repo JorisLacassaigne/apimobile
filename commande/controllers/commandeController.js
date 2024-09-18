@@ -1,6 +1,6 @@
 const CommandeModel = require("../models/commandeModel");
 const LigneCommandeModel = require("../models/ligneCommandeModel");
-const fetch = require('node-fetch');
+
 
 const CommandeController = {
     // Créer une nouvelle commande avec ses lignes
