@@ -5,7 +5,7 @@ const processOrder = require("../processOrder");
 const router = express.Router();
 
 // Route pour créer une commande
-router.post('/commande', auth, async (req, res) => {
+router.post('/commande', async (req, res) => {
     const { dateCommande, totalHT, lignesCommande } = req.body;
 
     // Traitement de la commande
